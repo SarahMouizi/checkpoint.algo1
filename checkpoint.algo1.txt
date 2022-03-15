@@ -1,0 +1,37 @@
+Algo checkpoint 
+
+Var  voy,Mot, i : integr ;
+             ch : string ;
+
+
+BEGIN
+mot = 0
+voy = 0
+
+Repet
+
+Ecrire ("donne ch")
+lire (ch)
+jusqu'a (ch.long(ch)=".")
+
+n <-- long(ch)
+pour i de 1 a n faire
+
+si ch [i]= " "
+
+mot<-- mot + 1
+
+FIN SI
+FIN POUR 
+ 
+Pour i de 1 a N faire 
+si ch[i]="e" ou ch[i] = "y"
+ou ch[i]="a" ou ch[i] = "0"
+ou ch[i]="u" ou ch[i] = "i"
+
+voy <-- voy+1
+
+FIN SI
+FIN Pour
+
+END
