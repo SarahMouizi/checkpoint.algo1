@@ -1,37 +1,120 @@
-Algo checkpoint 
-
-Var  voy,Mot, i : integr ;
-             ch : string ;
-
-
+ALGORITHM checkpoint
+VAR
+    N1 : integer;
+    N2 : integer;
+    set1 : ARRAY_OF INTEGER[3,1,7,9];
+    set2 : ARRAY_OF INTEGER[2,4,1,9,3];
+    sumEgal, sumDiff : integer := 0;
+    i,j : integer;
 BEGIN
-mot = 0
-voy = 0
+    Write("saisir la taille des deux tableaux")
+    Read(N1, N2)
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set2[j]=set1[i]) THEN
+              sumEgal = set1[i]*2 + sumEgal;
 
-Repet
+        END_IF
+    END_FOR
+    Write("La somme est",sumEgal)
+END
 
-Ecrire ("donne ch")
-lire (ch)
-jusqu'a (ch.long(ch)=".")
+Algorithme Sum Ele distinct
 
-n <-- long(ch)
-pour i de 1 a n faire
+VAR
+    set1:ARRAY_INTEGER :=[3,1,7,9];
+        set2:ARRAY_INTEGER :=[2,4,1,9,3];
+        i,j,sum = integer :=0;
+        bool :BOOLEAN :=false;
+BEGIN
+    
+FOR i FROM 0 TO set1.length-1 DO
+    
+FOR j FROM 0 TO set2.length-1  DO
+    
+    element les deux tabs set1et set2 
+       IF (set1[i]=set2[j]) THEN
+           bool =true;break
+       END_IF
+    END_FOR
 
-si ch [i]= " "
 
-mot<-- mot + 1
+IF (bool = false) THEN
+    sum = sum+set1[i]
+END_IF
+END_FOR
+//la 1ere partie du tab set1 
 
-FIN SI
-FIN POUR 
- 
-Pour i de 1 a N faire 
-si ch[i]="e" ou ch[i] = "y"
-ou ch[i]="a" ou ch[i] = "0"
-ou ch[i]="u" ou ch[i] = "i"
+//mm pr la 2eme partie :
+FOR i FROM 0 TO set2.length-1  DO
+    FOR j FROM 0 TO set1.length-1  DO
+       if(set2[i]=set1[j])THEN
+       bool= true
+       break
+       end if
+    END_FOR
+    if(bool=false)THEN
+sum = su+set2[i]
+write("la somme des elements distincts: ",sumDiff)
+END_FOR
+END
 
-voy <-- voy+1
+Algorithme Hashtable
 
-FIN SI
-FIN Pour
-
+VAR
+    set1 : ARRAY_OF INTEGER[] := [3,1,7,9]
+    set2: ARRAY_OF INTEGER[] := [2,4,1,9,3]
+    i,j,sommeEgaux = integer :=0
+    hashTab: HASH-TABLe <INTEGER,INTEGER>
+BEGIN
+// Remplissage du Hashtable
+    FOR i FROM 0 TO set1.length-1  DO
+        hashTab.insert(set1[i],1);
+    END_FOR
+    FOR j FROM 0 TO set2.length-1  DO
+        IF (hashTab.lookup(set2[j])=true) THEN
+             hashTab.insert(set2[j],2);
+        ELSE 
+           hashTab.insert(set2[j],1);    
+        END_IF 
+    END_FOR
+    // Pour la somme des elements egaux
+    FOR i FROM 0 TO set1.length  DO
+    IF (hashTab.get(set1[i])=2) THEN
+        sommeEgaux:=sommeEgaux+set1[i];
+    END_IF 
+    END_FOR
+    write("la somme des elements egaux est: ",sommeEgaux)
+END
+// Solution 2 - Somme des éléments distincts avec HashTable
+ALGORITHM sommeDistinctsHashtable
+VAR
+    set1 : ARRAY_OF INTEGER[] := [3,1,7,9]
+    set2: ARRAY_OF INTEGER[] := [2,4,1,9,3]
+    i,j,sommeDiff = integer :=0
+    hashTab: HASH-TABLe <INTEGER,INTEGER>
+BEGIN
+// Remplissage du Hashtable
+     FOR i FROM 0 TO set1.length-1  DO
+        hashTab.insert(set1[i],1);
+    END_FOR
+    FOR j FROM 0 TO set2.length-1  DO
+        IF (hashTab.lookup(set2[j])=true) THEN
+             hashTab.insert(set2[j],2);
+        ELSE 
+           hashTab.insert(set2[j],1);    
+        END_IF 
+    END_FOR
+      // Pour la somme des elements distincts
+      FOR i FROM 0 TO set1.length-1  DO
+          IF (hashTab.get(set1[i])=1) THEN
+              sommeDiff:=sommeDiff+set1[i];
+          END_IF
+      END_FOR
+      FOR j FROM 0 TO set2.length-1  DO
+         IF (hashTab.get(set2[j])=1) THEN
+             sommeDiff:=sommeDiff+set2[j];
+         END_IF
+      END_FOR
+      write("la somme des elements distincts est: ",sommeDiff);
 END
